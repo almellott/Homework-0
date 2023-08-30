@@ -1,0 +1,54 @@
+---
+title: "Homework 0"
+author: "Alex Mellott"
+format: html
+editor: visual
+---
+
+### Defining Quadratic Function and Plot
+
+A function is defined as $f(x) = ax^2 + bx + c$. The variables within the function are defined as $a=1, b=3, c=2$. The graph of $f(x)$ is shown below.
+
+```{r}
+#| echo: false
+a <- 1
+b <- 3
+c <- 2
+
+#define function and range to plot
+x <- seq(-5, 5, length = 300)
+y <- a * x^2 + b * x + c
+```
+
+```{r}
+#| echo: false
+#plot line and x axis
+plot(x, y, type = 'l')
+abline(h = 0, lty = 2)
+```
+
+### Quadratic Formula
+
+Setting $f(x) = 0$ and using the quadratic formula, $0 = \frac{-b\pm\sqrt{b^2 - 4ac}}{2a}$, we can find the solutions of this equation. The non-complex solutions are listed below (if they exist).
+
+```{r}
+#| echo: false
+suppressWarnings({
+  x1 <- (-b + sqrt(b^2 - 4*a*c)) / (2*a)
+  x2 <- (-b - sqrt(b^2 - 4*a*c)) / (2*a)
+})
+
+if ((!is.na(x1)) & (!is.na(x2))) {
+    if (x1 == x2)
+        x1
+      else
+        print(x1)
+        print(x2)
+} else if (!is.na(x1)){
+    print(x1)
+} else if (is.na(x2)){
+    print(x2)
+} else {
+  print("There are no non-complex solutions.")
+}
+```
